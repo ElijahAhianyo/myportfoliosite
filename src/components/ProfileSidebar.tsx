@@ -10,7 +10,7 @@ import {
 
 const ProfileSidebar = () => {
   return (
-    <Sidebar defaultCollapsed={true} className="border-r">
+    <Sidebar isDefaultCollapsed={true} className="border-r">
       <SidebarTrigger className="fixed top-4 left-4 z-50">
         <User className="h-5 w-5" />
       </SidebarTrigger>
