@@ -31,10 +31,10 @@ const posts = [
 
 const Index = () => {
   return (
-    <SidebarProvider>
+    <SidebarProvider defaultOpen={false}>
       <div className="min-h-screen flex w-full">
         <ProfileSidebar />
-        <main className="flex-1 px-4 pt-24 pb-16">
+        <main className="flex-1 px-4 pt-24 pb-16 ml-0">
           <section className="max-w-3xl mx-auto space-y-16">
             <div className="space-y-4">
               <h1 className="text-4xl font-bold tracking-tight text-blog-900 animate-fade-up">
