@@ -10,12 +10,21 @@ interface PostMetadata {
   featured?: boolean;
 }
 
+interface PostAttributes {
+  title: string;
+  excerpt: string;
+  date: string;
+  readingTime: string;
+  slug: string;
+  featured?: boolean;
+}
+
 export function getAllPosts(): PostMetadata[] {
   const posts = import.meta.glob('../posts/*.md', { eager: true, as: 'raw' });
   
   return Object.entries(posts)
     .map(([filepath, content]) => {
-      const { attributes } = frontMatter(content as string);
+      const { attributes } = frontMatter<PostAttributes>(content as string);
       return {
         title: attributes.title,
         excerpt: attributes.excerpt,
@@ -38,7 +47,7 @@ export async function getPostBySlug(slug: string) {
     throw new Error(`Post with slug ${slug} not found`);
   }
 
-  const { attributes, body } = frontMatter(postContent as string);
+  const { attributes, body } = frontMatter<PostAttributes>(postContent as string);
   return {
     metadata: {
       title: attributes.title,
