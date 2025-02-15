@@ -1,5 +1,5 @@
 
-import matter from 'gray-matter';
+import frontMatter from 'front-matter';
 
 interface PostMetadata {
   title: string;
@@ -15,14 +15,14 @@ export function getAllPosts(): PostMetadata[] {
   
   return Object.entries(posts)
     .map(([filepath, content]) => {
-      const { data } = matter(content as string);
+      const { attributes } = frontMatter(content as string);
       return {
-        title: data.title,
-        excerpt: data.excerpt,
-        date: data.date,
-        readingTime: data.readingTime,
-        slug: data.slug,
-        featured: data.featured || false,
+        title: attributes.title,
+        excerpt: attributes.excerpt,
+        date: attributes.date,
+        readingTime: attributes.readingTime,
+        slug: attributes.slug,
+        featured: attributes.featured || false,
       };
     })
     .sort((a, b) => (new Date(b.date)).getTime() - (new Date(a.date)).getTime());
@@ -38,16 +38,16 @@ export async function getPostBySlug(slug: string) {
     throw new Error(`Post with slug ${slug} not found`);
   }
 
-  const { data, content } = matter(postContent as string);
+  const { attributes, body } = frontMatter(postContent as string);
   return {
     metadata: {
-      title: data.title,
-      excerpt: data.excerpt,
-      date: data.date,
-      readingTime: data.readingTime,
-      slug: data.slug,
-      featured: data.featured || false,
+      title: attributes.title,
+      excerpt: attributes.excerpt,
+      date: attributes.date,
+      readingTime: attributes.readingTime,
+      slug: attributes.slug,
+      featured: attributes.featured || false,
     },
-    content
+    content: body
   };
 }
