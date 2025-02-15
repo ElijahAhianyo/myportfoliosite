@@ -19,7 +19,14 @@ const ProfileSidebar = () => {
       <SidebarContent className="pt-16">
         <SidebarHeader className="px-6 py-4">
           <h2 className="text-2xl font-semibold tracking-tight">John Doe</h2>
-          <p className="text-muted-foreground mt-1">
+          <div className="mt-4 mb-3">
+            <img
+              src="/photo-1485827404703-89b55fcc595e"
+              alt="Profile"
+              className="w-32 h-32 object-cover rounded-lg"
+            />
+          </div>
+          <p className="text-muted-foreground mt-1 italic">
             Full-stack developer crafting delightful web experiences
           </p>
         </SidebarHeader>
