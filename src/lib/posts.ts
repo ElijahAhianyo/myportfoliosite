@@ -1,4 +1,6 @@
 
+import matter from 'gray-matter';
+
 interface PostMetadata {
   title: string;
   excerpt: string;
@@ -8,31 +10,44 @@ interface PostMetadata {
   featured?: boolean;
 }
 
-const posts: PostMetadata[] = [
-  {
-    title: "Creating Minimalist Designs That Stand Out",
-    excerpt: "Learn how to create impactful minimalist designs that capture attention while maintaining simplicity and elegance...",
-    date: "2024-03-14",
-    readingTime: "5 min read",
-    slug: "minimalist-designs",
-    featured: true,
-  },
-  {
-    title: "The Art of Typography in Web Design",
-    excerpt: "Exploring how typography choices can make or break your web design, with practical tips for choosing and pairing fonts...",
-    date: "2024-03-12",
-    readingTime: "4 min read",
-    slug: "typography-in-web-design",
-  },
-  {
-    title: "Color Theory Basics for Designers",
-    excerpt: "Understanding color theory is crucial for creating harmonious designs. Let's explore the fundamentals...",
-    date: "2024-03-10",
-    readingTime: "6 min read",
-    slug: "color-theory-basics",
-  },
-];
-
 export function getAllPosts(): PostMetadata[] {
-  return posts.sort((a, b) => (new Date(b.date)).getTime() - (new Date(a.date)).getTime());
+  const posts = import.meta.glob('../posts/*.md', { eager: true, as: 'raw' });
+  
+  return Object.entries(posts)
+    .map(([filepath, content]) => {
+      const { data } = matter(content as string);
+      return {
+        title: data.title,
+        excerpt: data.excerpt,
+        date: data.date,
+        readingTime: data.readingTime,
+        slug: data.slug,
+        featured: data.featured || false,
+      };
+    })
+    .sort((a, b) => (new Date(b.date)).getTime() - (new Date(a.date)).getTime());
+}
+
+export async function getPostBySlug(slug: string) {
+  const posts = import.meta.glob('../posts/*.md', { eager: true, as: 'raw' });
+  const postContent = Object.entries(posts).find(([filepath]) => 
+    filepath.includes(slug)
+  )?.[1];
+
+  if (!postContent) {
+    throw new Error(`Post with slug ${slug} not found`);
+  }
+
+  const { data, content } = matter(postContent as string);
+  return {
+    metadata: {
+      title: data.title,
+      excerpt: data.excerpt,
+      date: data.date,
+      readingTime: data.readingTime,
+      slug: data.slug,
+      featured: data.featured || false,
+    },
+    content
+  };
 }
