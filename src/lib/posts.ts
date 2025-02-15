@@ -7,7 +7,7 @@ interface PostMetadata {
   date: string;
   readingTime: string;
   slug: string;
-  featured?: boolean;
+  featured: boolean;  // Changed from optional to required with a default value
 }
 
 interface PostAttributes {
@@ -21,20 +21,21 @@ interface PostAttributes {
 
 export function getAllPosts(): PostMetadata[] {
   const posts = import.meta.glob('../posts/*.md', { eager: true, as: 'raw' });
-  console.log("Found posts files:", Object.keys(posts)); // Added debug log
+  console.log("Found posts files:", Object.keys(posts));
   
   const processedPosts = Object.entries(posts)
     .map(([filepath, content]) => {
       try {
         const { attributes } = frontMatter<PostAttributes>(content as string);
-        return {
+        const post: PostMetadata = {
           title: attributes.title,
           excerpt: attributes.excerpt,
           date: attributes.date,
           readingTime: attributes.readingTime,
           slug: attributes.slug,
-          featured: attributes.featured || false,
+          featured: attributes.featured ?? false, // Use nullish coalescing
         };
+        return post;
       } catch (error) {
         console.error(`Error processing post ${filepath}:`, error);
         return null;
@@ -43,7 +44,7 @@ export function getAllPosts(): PostMetadata[] {
     .filter((post): post is PostMetadata => post !== null)
     .sort((a, b) => (new Date(b.date)).getTime() - (new Date(a.date)).getTime());
 
-  console.log("Processed posts:", processedPosts); // Added debug log
+  console.log("Processed posts:", processedPosts);
   return processedPosts;
 }
 
@@ -65,7 +66,7 @@ export async function getPostBySlug(slug: string) {
       date: attributes.date,
       readingTime: attributes.readingTime,
       slug: attributes.slug,
-      featured: attributes.featured || false,
+      featured: attributes.featured ?? false,
     },
     content: body
   };
