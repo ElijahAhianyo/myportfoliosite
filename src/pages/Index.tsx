@@ -6,6 +6,7 @@ import { getAllPosts } from "@/lib/posts";
 
 const Index = () => {
   const posts = getAllPosts();
+  console.log("Posts in Index:", posts); // Added debug log
 
   return (
     <SidebarProvider defaultOpen={false}>
@@ -23,15 +24,19 @@ const Index = () => {
             </div>
             
             <div className="space-y-12">
-              {posts.map((post, index) => (
-                <div 
-                  key={post.slug}
-                  className="animate-fade-up"
-                  style={{ animationDelay: `${(index + 2) * 100}ms` }}
-                >
-                  <BlogCard {...post} />
-                </div>
-              ))}
+              {posts && posts.length > 0 ? (
+                posts.map((post, index) => (
+                  <div 
+                    key={post.slug}
+                    className="animate-fade-up"
+                    style={{ animationDelay: `${(index + 2) * 100}ms` }}
+                  >
+                    <BlogCard {...post} />
+                  </div>
+                ))
+              ) : (
+                <p>No posts found</p>
+              )}
             </div>
           </section>
         </main>
