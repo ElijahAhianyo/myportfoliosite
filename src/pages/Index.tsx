@@ -2,34 +2,11 @@
 import { SidebarProvider } from "@/components/ui/sidebar";
 import ProfileSidebar from "@/components/ProfileSidebar";
 import BlogCard from "@/components/BlogCard";
-
-// Mock data - replace with real data later
-const posts = [
-  {
-    title: "Creating Minimalist Designs That Stand Out",
-    excerpt: "Learn how to create impactful minimalist designs that capture attention while maintaining simplicity and elegance...",
-    date: "March 14, 2024",
-    readingTime: "5 min read",
-    slug: "minimalist-designs",
-    featured: true,
-  },
-  {
-    title: "The Art of Typography in Web Design",
-    excerpt: "Exploring how typography choices can make or break your web design, with practical tips for choosing and pairing fonts...",
-    date: "March 12, 2024",
-    readingTime: "4 min read",
-    slug: "typography-in-web-design",
-  },
-  {
-    title: "Color Theory Basics for Designers",
-    excerpt: "Understanding color theory is crucial for creating harmonious designs. Let's explore the fundamentals...",
-    date: "March 10, 2024",
-    readingTime: "6 min read",
-    slug: "color-theory-basics",
-  },
-];
+import { getAllPosts } from "@/lib/posts";
 
 const Index = () => {
+  const posts = getAllPosts();
+
   return (
     <SidebarProvider defaultOpen={false}>
       <div className="min-h-screen flex w-full">
