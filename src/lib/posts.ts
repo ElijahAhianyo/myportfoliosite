@@ -1,8 +1,4 @@
 
-import fs from 'fs';
-import path from 'path';
-import matter from 'gray-matter';
-
 interface PostMetadata {
   title: string;
   excerpt: string;
@@ -12,27 +8,31 @@ interface PostMetadata {
   featured?: boolean;
 }
 
-export function getAllPosts(): PostMetadata[] {
-  const postsDirectory = path.join(process.cwd(), 'src/posts');
-  const fileNames = fs.readdirSync(postsDirectory);
-  
-  const posts = fileNames
-    .filter(fileName => fileName.endsWith('.md'))
-    .map(fileName => {
-      const fullPath = path.join(postsDirectory, fileName);
-      const fileContents = fs.readFileSync(fullPath, 'utf8');
-      const { data } = matter(fileContents);
-      
-      return {
-        title: data.title,
-        excerpt: data.excerpt,
-        date: data.date,
-        readingTime: data.readingTime,
-        slug: data.slug,
-        featured: data.featured || false,
-      };
-    })
-    .sort((a, b) => (new Date(b.date)).getTime() - (new Date(a.date)).getTime());
+const posts: PostMetadata[] = [
+  {
+    title: "Creating Minimalist Designs That Stand Out",
+    excerpt: "Learn how to create impactful minimalist designs that capture attention while maintaining simplicity and elegance...",
+    date: "2024-03-14",
+    readingTime: "5 min read",
+    slug: "minimalist-designs",
+    featured: true,
+  },
+  {
+    title: "The Art of Typography in Web Design",
+    excerpt: "Exploring how typography choices can make or break your web design, with practical tips for choosing and pairing fonts...",
+    date: "2024-03-12",
+    readingTime: "4 min read",
+    slug: "typography-in-web-design",
+  },
+  {
+    title: "Color Theory Basics for Designers",
+    excerpt: "Understanding color theory is crucial for creating harmonious designs. Let's explore the fundamentals...",
+    date: "2024-03-10",
+    readingTime: "6 min read",
+    slug: "color-theory-basics",
+  },
+];
 
-  return posts;
+export function getAllPosts(): PostMetadata[] {
+  return posts.sort((a, b) => (new Date(b.date)).getTime() - (new Date(a.date)).getTime());
 }
