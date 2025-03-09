@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - deploy-ci
 
 jobs:
   build:
@@ -36,7 +35,7 @@ jobs:
     name: Deploy
     needs: build
     runs-on: ubuntu-latest
-    # if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main'
 
     steps:
       - name: Checkout repo
