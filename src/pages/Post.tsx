@@ -2,17 +2,12 @@
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { getPostBySlug } from "@/lib/posts";
-import { marked } from "marked";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import ProfileSidebar from "@/components/ProfileSidebar";
-
-// Configure marked with code highlighting
-marked.setOptions({
-  gfm: true,
-  breaks: true,
-  headerIds: true,
-  langPrefix: 'language-',
-});
+import ReactMarkdown from "react-markdown";
+import rehypeHighlight from "rehype-highlight";
+import remarkGfm from "remark-gfm";
+import "highlight.js/styles/github-dark.css"; 
 
 const Post = () => {
   const { slug } = useParams();
@@ -21,7 +16,7 @@ const Post = () => {
     queryKey: ['post', slug],
     queryFn: () => getPostBySlug(slug as string),
   });
-
+  console.log("content: ", post?.content);
   if (isLoading) {
     return (
       <SidebarProvider defaultOpen={false}>
@@ -76,26 +71,15 @@ const Post = () => {
                 <span>{post?.metadata.readingTime}</span>
               </div>
             </header>
-            <div 
-              dangerouslySetInnerHTML={{ __html: marked(post?.content || '') }}
-              className="prose prose-lg prose-blog max-w-none
-                prose-headings:font-semibold prose-headings:tracking-tight
-                prose-h2:text-2xl prose-h2:mt-10 prose-h2:mb-4
-                prose-p:text-blog-700 prose-p:leading-relaxed
-                prose-a:text-blog-900 prose-a:underline hover:prose-a:text-blog-700
-                prose-blockquote:border-l-4 prose-blockquote:border-blog-200 prose-blockquote:pl-4 prose-blockquote:italic
-                prose-ul:list-disc prose-ul:pl-6
-                prose-ol:list-decimal prose-ol:pl-6
-                prose-li:mt-2
-                prose-code:px-1.5 prose-code:py-0.5 prose-code:bg-blog-100 prose-code:rounded prose-code:text-blog-800
-                prose-pre:bg-blog-900 prose-pre:text-blog-50 prose-pre:p-4 prose-pre:rounded-lg
-                prose-pre:overflow-x-auto
-                prose-img:rounded-lg prose-img:shadow-md
-                [&_pre_code]:bg-transparent [&_pre_code]:p-0
-                [&_figure]:my-8
-                [&_figure_img]:my-0
-                [&_figcaption]:text-center [&_figcaption]:text-sm [&_figcaption]:text-blog-500 [&_figcaption]:mt-2"
-            />
+            
+            {/* Properly formatted Markdown */}
+            <div className="prose max-w-none">
+              <ReactMarkdown 
+                children={post?.content || ""}
+                remarkPlugins={[remarkGfm]}
+                rehypePlugins={[rehypeHighlight]}
+              />
+            </div>
           </article>
         </main>
       </div>

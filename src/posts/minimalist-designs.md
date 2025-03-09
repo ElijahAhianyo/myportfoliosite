@@ -1,4 +1,3 @@
-
 ---
 title: "Creating Minimalist Designs That Stand Out"
 excerpt: "Learn how to create impactful minimalist designs that capture attention while maintaining simplicity and elegance..."
