@@ -14,7 +14,7 @@ const Navbar = () => {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b">
       <div className="max-w-4xl mx-auto px-4 h-16 flex items-center justify-between">
         <Link to="/" className="text-xl font-bold text-foreground">
-          John Doe
+          Elijah Ahianyo
         </Link>
         
         <div className="flex items-center space-x-8">

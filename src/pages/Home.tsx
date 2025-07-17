@@ -19,11 +19,11 @@ const Home = () => {
             
             <div className="space-y-4">
               <h1 className="text-4xl font-bold tracking-tight">
-                Hey, I'm John Doe
+                Hey, I'm Elijah Ahianyo
               </h1>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                I'm a passionate software engineer who loves crafting elegant solutions to complex problems. 
-                My journey in tech spans across full-stack development, system architecture, and everything 
+                I'm a passionate software engineer from Ghana who loves crafting elegant solutions to complex problems. 
+                My journey in tech spans across backend development, system architecture, and everything 
                 in between. When I'm not coding, you'll find me exploring the latest technologies, 
                 contributing to open source, or sharing knowledge through writing.
               </p>
@@ -33,19 +33,19 @@ const Home = () => {
           {/* Social Links */}
           <div className="flex items-center space-x-4">
             <Button variant="outline" size="sm" asChild>
-              <a href="mailto:john.doe@example.com" className="flex items-center space-x-2">
+              <a href="mailto:elijahahianyo@gmail.com" className="flex items-center space-x-2">
                 <Mail className="h-4 w-4" />
                 <span>Email</span>
               </a>
             </Button>
             <Button variant="outline" size="sm" asChild>
-              <a href="https://github.com/johndoe" target="_blank" rel="noopener noreferrer" className="flex items-center space-x-2">
+              <a href="https://github.com/ElijahAhianyo" target="_blank" rel="noopener noreferrer" className="flex items-center space-x-2">
                 <Github className="h-4 w-4" />
                 <span>GitHub</span>
               </a>
             </Button>
             <Button variant="outline" size="sm" asChild>
-              <a href="https://linkedin.com/in/johndoe" target="_blank" rel="noopener noreferrer" className="flex items-center space-x-2">
+              <a href="https://linkedin.com/in/elijah-ahianyo" target="_blank" rel="noopener noreferrer" className="flex items-center space-x-2">
                 <Linkedin className="h-4 w-4" />
                 <span>LinkedIn</span>
               </a>
