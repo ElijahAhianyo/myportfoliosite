@@ -1,13 +1,12 @@
 
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { getPostBySlug } from "@/lib/posts";
-import { SidebarProvider } from "@/components/ui/sidebar";
-import ProfileSidebar from "@/components/ProfileSidebar";
+import { ArrowLeft } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import rehypeHighlight from "rehype-highlight";
 import remarkGfm from "remark-gfm";
-import "highlight.js/styles/github-dark.css"; 
+import "highlight.js/styles/github-dark.css";
 
 const Post = () => {
   const { slug } = useParams();
@@ -19,71 +18,74 @@ const Post = () => {
   console.log("content: ", post?.content);
   if (isLoading) {
     return (
-      <SidebarProvider defaultOpen={false}>
-        <div className="min-h-screen flex w-full">
-          <ProfileSidebar />
-          <main className="flex-1 px-4 pt-24 pb-16 ml-0">
-            <div className="max-w-3xl mx-auto">
-              <div className="animate-pulse space-y-4">
-                <div className="h-8 bg-blog-100 rounded w-3/4"></div>
-                <div className="h-4 bg-blog-100 rounded w-1/4"></div>
-                <div className="space-y-2">
-                  <div className="h-4 bg-blog-100 rounded"></div>
-                  <div className="h-4 bg-blog-100 rounded"></div>
-                  <div className="h-4 bg-blog-100 rounded w-5/6"></div>
-                </div>
-              </div>
+      <div className="min-h-screen bg-gradient-to-br from-background to-muted/30 pt-24">
+        <div className="max-w-4xl mx-auto px-4 py-16">
+          <div className="animate-pulse space-y-4">
+            <div className="h-8 bg-muted rounded w-3/4"></div>
+            <div className="h-4 bg-muted rounded w-1/4"></div>
+            <div className="space-y-2">
+              <div className="h-4 bg-muted rounded"></div>
+              <div className="h-4 bg-muted rounded"></div>
+              <div className="h-4 bg-muted rounded w-5/6"></div>
             </div>
-          </main>
+          </div>
         </div>
-      </SidebarProvider>
+      </div>
     );
   }
 
   if (error) {
     return (
-      <SidebarProvider defaultOpen={false}>
-        <div className="min-h-screen flex w-full">
-          <ProfileSidebar />
-          <main className="flex-1 px-4 pt-24 pb-16 ml-0">
-            <div className="max-w-3xl mx-auto">
-              <p className="text-red-500">Error loading post</p>
-            </div>
-          </main>
+      <div className="min-h-screen bg-gradient-to-br from-background to-muted/30 pt-24">
+        <div className="max-w-4xl mx-auto px-4 py-16">
+          <p className="text-destructive">Error loading post</p>
         </div>
-      </SidebarProvider>
+      </div>
     );
   }
 
   return (
-    <SidebarProvider defaultOpen={false}>
-      <div className="min-h-screen flex w-full">
-        <ProfileSidebar />
-        <main className="flex-1 px-4 pt-24 pb-16 ml-0">
-          <article className="max-w-3xl mx-auto">
-            <header className="mb-12 text-center">
-              <h1 className="text-4xl font-bold tracking-tight text-blog-900 mb-4">
-                {post?.metadata.title}
-              </h1>
-              <div className="flex items-center justify-center gap-2 text-sm text-blog-500">
-                <time>{post?.metadata.date}</time>
-                <span>•</span>
-                <span>{post?.metadata.readingTime}</span>
-              </div>
-            </header>
-            
-            {/* Properly formatted Markdown */}
-            <div className="prose max-w-none">
-              <ReactMarkdown 
-                children={post?.content || ""}
-                remarkPlugins={[remarkGfm]}
-                rehypePlugins={[rehypeHighlight]}
-              />
+    <div className="min-h-screen bg-gradient-to-br from-background to-muted/30 pt-24">
+      <div className="max-w-4xl mx-auto px-4 py-16">
+        <Link 
+          to="/blogs" 
+          className="inline-flex items-center space-x-2 text-muted-foreground hover:text-foreground transition-colors mb-8"
+        >
+          <ArrowLeft className="h-4 w-4" />
+          <span>Back to posts</span>
+        </Link>
+        
+        <article className="space-y-8">
+          <header className="space-y-4">
+            <h1 className="text-4xl font-bold tracking-tight">
+              {post?.metadata.title}
+            </h1>
+            <div className="flex items-center gap-2 text-sm text-muted-foreground">
+              <time>{post?.metadata.date}</time>
+              <span>•</span>
+              <span>{post?.metadata.readingTime}</span>
             </div>
-          </article>
-        </main>
+          </header>
+          
+          <div className="prose prose-slate dark:prose-invert max-w-none
+                         prose-headings:font-bold prose-headings:tracking-tight
+                         prose-h1:text-3xl prose-h2:text-2xl prose-h3:text-xl
+                         prose-p:leading-relaxed prose-p:text-foreground/90
+                         prose-a:text-primary prose-a:no-underline hover:prose-a:underline
+                         prose-blockquote:border-l-primary prose-blockquote:bg-muted/50 prose-blockquote:py-2 prose-blockquote:px-4
+                         prose-code:bg-muted prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-code:text-sm
+                         prose-pre:bg-muted prose-pre:border prose-pre:rounded-lg prose-pre:p-4
+                         prose-img:rounded-lg prose-img:shadow-md
+                         prose-hr:border-border">
+            <ReactMarkdown 
+              children={post?.content || ""}
+              remarkPlugins={[remarkGfm]}
+              rehypePlugins={[rehypeHighlight]}
+            />
+          </div>
+        </article>
       </div>
-    </SidebarProvider>
+    </div>
   );
 };
 
