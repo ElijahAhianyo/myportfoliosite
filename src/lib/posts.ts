@@ -21,7 +21,6 @@ interface PostAttributes {
 
 export function getAllPosts(): PostMetadata[] {
   const posts = import.meta.glob('../posts/*.md', { eager: true, as: 'raw' });
-  console.log("Found posts files:", Object.keys(posts));
   
   const processedPosts = Object.entries(posts)
     .map(([filepath, content]) => {
@@ -37,14 +36,12 @@ export function getAllPosts(): PostMetadata[] {
         };
         return post;
       } catch (error) {
-        console.error(`Error processing post ${filepath}:`, error);
         return null;
       }
     })
     .filter((post): post is PostMetadata => post !== null)
     .sort((a, b) => (new Date(b.date)).getTime() - (new Date(a.date)).getTime());
 
-  console.log("Processed posts:", processedPosts);
   return processedPosts;
 }
 
