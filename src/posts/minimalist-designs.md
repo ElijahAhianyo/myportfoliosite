@@ -4,7 +4,6 @@ excerpt: "Learn how to create impactful minimalist designs that capture attentio
 date: "2024-03-14"
 readingTime: "5 min read"
 slug: "minimalist-designs"
-featured: true
 ---
 
 # Creating Minimalist Designs That Stand Out
