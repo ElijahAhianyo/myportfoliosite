@@ -172,11 +172,11 @@ title: "Building a Session Store in rust"
 excerpt: "Understanding color theory is crucial for creating harmonious designs. Let's explore the fundamentals..."
 date: "2025-07-17"
 readingTime: "6 min read"
-slug: "session-store-rust"
+slug: "session-stores-in-rust"
 featured: true
 ---
 
-# Building a Dynamic Session Store in rust`,lw=`---
+`,lw=`---
 title: "The Art of Typography in Web Design"
 excerpt: "Exploring how typography choices can make or break your web design, with practical tips for choosing and pairing fonts..."
 date: "2024-03-12"
