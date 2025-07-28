@@ -38,7 +38,7 @@ jobs:
     name: Deploy
     needs: build
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main' || github.ref == "refs/heads/fix-404"
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/fix-404'
 
     steps:
       - name: Checkout repo
