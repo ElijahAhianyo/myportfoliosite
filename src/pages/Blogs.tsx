@@ -1,4 +1,5 @@
 import BlogCard from "@/components/BlogCard";
+import { Book, FileText, Sparkles } from "lucide-react";
 import { getAllPosts } from "@/lib/posts";
 
 const Blogs = () => {
@@ -12,15 +13,15 @@ const Blogs = () => {
             <h1 className="text-4xl font-bold tracking-tight">
               Blog Posts
             </h1>
-            <p className="text-xl text-muted-foreground">
+            {/* <p className="text-xl text-muted-foreground">
               Thoughts on technology, development, and everything in between.
-            </p>
+            </p> */}
           </div>
-          
+
           <div className="space-y-12">
             {posts && posts.length > 0 ? (
               posts.map((post, index) => (
-                <div 
+                <div
                   key={post.slug}
                   className="animate-fade-up"
                   style={{ animationDelay: `${index * 100}ms` }}
@@ -29,7 +30,28 @@ const Blogs = () => {
                 </div>
               ))
             ) : (
-              <p className="text-center text-muted-foreground">No posts found</p>
+              <div className="flex flex-col items-center justify-center py-20 space-y-6">
+                <div className="relative">
+                  <Sparkles className="h-16 w-16 text-primary animate-pulse" />
+                  <div className="absolute inset-0 animate-ping">
+                    <Sparkles className="h-16 w-16 text-primary/30" />
+                  </div>
+                </div>
+                <div className="text-center space-y-2 max-w-md">
+                  <h3 className="text-xl font-semibold">Coming Soon!</h3>
+                  <p className="text-muted-foreground">
+                    I’m tinkering with a few drafts — exciting posts are brewing. Come back soon for the reveal! 🚀
+                  </p>
+                </div>
+                <div className="flex items-center space-x-2 text-sm text-muted-foreground animate-bounce">
+                  <Book className="h-4 w-4" />
+                  <span>•</span>
+                  <FileText className="h-4 w-4" />
+                  <span>•</span>
+                  <Book className="h-4 w-4" />
+                </div>
+              </div>
+
             )}
           </div>
         </div>

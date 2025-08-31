@@ -4,6 +4,5 @@ excerpt: "Understanding color theory is crucial for creating harmonious designs.
 date: "2025-07-17"
 readingTime: "6 min read"
 slug: "session-stores-in-rust"
-featured: true
 ---
 

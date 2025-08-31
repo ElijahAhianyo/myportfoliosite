@@ -13,19 +13,19 @@ const Home = () => {
         <section className="space-y-8">
           <div className="space-y-6">
             <blockquote className="text-xl italic text-muted-foreground border-l-4 border-primary pl-6">
-              "Any sufficiently advanced technology is indistinguishable from magic."
-              <footer className="text-sm mt-2 not-italic">— Arthur C. Clarke</footer>
+              "The only true wisdom is in knowing you know nothing."
+              <footer className="text-sm mt-2 not-italic">— Socrates</footer>
             </blockquote>
-            
+
             <div className="space-y-4">
               <h1 className="text-4xl font-bold tracking-tight">
                 Hey, I'm Elijah Ahianyo
               </h1>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                I'm a passionate software engineer from Ghana who loves crafting elegant solutions to complex problems. 
-                My journey in tech spans across backend development, system architecture, and everything 
-                in between. When I'm not coding, you'll find me exploring the latest technologies, 
-                contributing to open source, or sharing knowledge through writing.
+                I'm a passionate software engineer from Ghana who loves crafting elegant solutions to complex problems.
+                My interests currently lie in OSS, web development and systems programming--operating systems, networking, low-level plumbing.
+
+                Welcome to my space, where I convert my thoughts, learnings and rants into writing.
               </p>
             </div>
           </div>
@@ -61,7 +61,7 @@ const Home = () => {
               <Link to="/blogs">View All Posts</Link>
             </Button>
           </div>
-          
+
           <div className="grid gap-6">
             {posts.map((post, index) => (
               <Link
