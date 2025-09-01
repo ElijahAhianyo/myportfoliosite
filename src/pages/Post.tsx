@@ -15,7 +15,7 @@ const Post = () => {
     queryKey: ['post', slug],
     queryFn: () => getPostBySlug(slug as string),
   });
-  console.log("content: ", post?.content);
+
   if (isLoading) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-background to-muted/30 pt-24">
