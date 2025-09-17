@@ -27,7 +27,7 @@ export const projects: Project[] = [
     category: 'personal',
     featured: false,
     date: '2024-03-21',
-    status: 'active'
+    status: 'archived'
   },
   {
     id: 'cot-basic-auth',
@@ -62,7 +62,7 @@ export const projects: Project[] = [
     title: 'Reflex',
     description: 'building web apps with pure python',
     longDescription: 'I was a core team member of the Reflex project from 2023 to 2025. I also worked on some internal tools like the Reflex Hosting platform, the Reflex CLI and the reflex AI tool.',
-    url: 'reflex.dev',
+    url: 'https://reflex.dev',
     githubUrl: 'https://github.com/reflex-dev/reflex',
     technologies: ['Python', 'Nextjs', 'Javascript', 'FastAPI'],
     category: 'opensource',
