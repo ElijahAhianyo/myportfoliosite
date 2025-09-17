@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
+import Projects from "./pages/Projects";
 import Blogs from "./pages/Blogs";
 import ReadingList from "./pages/ReadingList";
 import Post from "./pages/Post";
@@ -25,6 +26,7 @@ const App = () => (
             <Navbar />
             <Routes>
               <Route path="/" element={<Home />} />
+              <Route path="/projects" element={<Projects />} />
               <Route path="/blogs" element={<Blogs />} />
               <Route path="/reading-list" element={<ReadingList />} />
               <Route path="/blog/:slug" element={<Post />} />

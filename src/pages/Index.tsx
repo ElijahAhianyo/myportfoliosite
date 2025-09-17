@@ -6,7 +6,7 @@ import { getAllPosts } from "@/lib/posts";
 
 const Index = () => {
   const posts = getAllPosts();
-  console.log("Posts in Index:", posts); // Added debug log
+
 
   return (
     <SidebarProvider defaultOpen={false}>
