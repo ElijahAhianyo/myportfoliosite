@@ -12,25 +12,22 @@ interface BlogCardProps {
 
 const BlogCard = ({ title, excerpt, date, readingTime, slug, featured }: BlogCardProps) => {
   return (
-    <Link 
+    <Link
       to={`/blog/${slug}`}
       className={`
-        block group p-6 rounded-lg transition-all duration-300
-        ${featured 
-          ? 'bg-blog-100 hover:bg-blog-200' 
-          : 'hover:bg-blog-50'
-        }
+        block group p-6 rounded-lg transition-all duration-300 hover:shadow-sm hover:-translate-y-1 hover:shadow-lg border border-border hover:border-primary/50
+        ${featured ? 'border-l-4 border-blog-300' : ''}
       `}
     >
       <article className="space-y-3">
-        <div className="flex items-center gap-2 text-sm text-blog-500">
+        <div className="flex items-center gap-2 text-sm ">
           <time>{date}</time>
           <span>•</span>
           <span>{readingTime}</span>
         </div>
         <h2 className={`
           ${featured ? 'text-2xl' : 'text-xl'}
-          font-semibold tracking-tight text-blog-900
+          font-semibold tracking-tight 
           group-hover:text-blog-600 transition-colors
         `}>
           {title}
