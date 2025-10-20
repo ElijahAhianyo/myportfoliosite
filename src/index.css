@@ -87,3 +87,70 @@
     text-wrap: balance;
   }
 }
+
+/* Custom table styling */
+@layer components {
+  .markdown-table {
+    @apply w-full border-collapse;
+  }
+  
+  .markdown-table th {
+    @apply bg-muted/50 px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider border-b border-border;
+  }
+  
+  .markdown-table td {
+    @apply px-6 py-4 whitespace-nowrap text-sm text-foreground border-b border-border;
+  }
+  
+  .markdown-table tr:hover {
+    @apply bg-muted/30 transition-colors;
+  }
+  
+  .markdown-table tbody tr:last-child td {
+    @apply border-b-0;
+  }
+}
+
+/* Note component animations */
+@layer components {
+  .note-content-enter {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  
+  .note-content-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 200ms ease-out, transform 200ms ease-out;
+  }
+  
+  .note-content-exit {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .note-content-exit-active {
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 200ms ease-in, transform 200ms ease-in;
+  }
+  
+  /* Smooth accordion transitions */
+  .accordion-transition {
+    transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+                opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  /* Icon rotation animations */
+  .icon-rotate {
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .icon-rotate.open {
+    transform: rotate(90deg);
+  }
+}
+
+pre {
+  background-color: transparent !important;
+}
